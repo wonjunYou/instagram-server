@@ -1,3 +1,12 @@
+---
+name: issue-template
+about: all issues
+title: ''
+labels: ''
+assignees: wonjunYou
+
+---
+
 ## ✨ 세부 내용
 
 <!-- 이슈의 세부적인 내용을 적어주세요. -->
