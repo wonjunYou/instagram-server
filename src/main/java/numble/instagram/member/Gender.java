@@ -1,4 +1,4 @@
-package domain.member;
+package numble.instagram.member;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

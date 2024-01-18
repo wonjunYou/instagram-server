@@ -1,11 +1,11 @@
-package api.auth.service;
+package numble.instagram.api.auth.service;
 
-import api.auth.controller.request.SignUpRequest;
+import numble.instagram.api.auth.controller.request.SignUpRequest;
 
-import domain.member.Gender;
-import domain.member.Member;
-import domain.member.MemberRepository;
-import domain.member.Password;
+import numble.instagram.member.Gender;
+import numble.instagram.member.Member;
+import numble.instagram.member.MemberRepository;
+import numble.instagram.member.Password;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;

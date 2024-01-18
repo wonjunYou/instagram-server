@@ -1,4 +1,4 @@
-package global.exception;
+package numble.instagram.global.exception;
 
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;

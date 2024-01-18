@@ -1,7 +1,7 @@
-package api.auth.controller;
+package numble.instagram.api.auth.controller;
 
-import api.auth.controller.request.SignUpRequest;
-import api.auth.service.AuthService;
+import numble.instagram.api.auth.controller.request.SignUpRequest;
+import numble.instagram.api.auth.service.AuthService;
 import jakarta.validation.Valid;
 
 import lombok.Getter;
