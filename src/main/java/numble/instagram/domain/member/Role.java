@@ -1,4 +1,4 @@
-package numble.instagram.member;
+package numble.instagram.domain.member;
 
 import java.util.Arrays;
 import java.util.List;

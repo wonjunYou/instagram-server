@@ -1,4 +1,4 @@
-package numble.instagram.member;
+package numble.instagram.domain.member;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
