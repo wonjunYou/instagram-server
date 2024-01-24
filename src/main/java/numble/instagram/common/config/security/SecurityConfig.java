@@ -1,4 +1,4 @@
-package numble.instagram.global.config.security;
+package numble.instagram.common.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
