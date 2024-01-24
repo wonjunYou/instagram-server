@@ -1,59 +1,46 @@
 package numble.instagram.domain.member;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import numble.instagram.common.entity.BaseEntity;
+import numble.instagram.domain.member.vo.EncodedPassword;
+import numble.instagram.domain.member.vo.Identifier;
+import numble.instagram.domain.memberprofile.MemberProfile;
 
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String email;
+    @Embedded
+    private Identifier identifier;
 
     @Embedded
-    private Password password;
+    private EncodedPassword password;
 
-    private String nickname;
-
-    private String name;
-
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
-
-    private String telephone;
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
-    private boolean status;
-
-    private String imageUrl;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "member_profile_id", nullable = false, unique = true)
+    private MemberProfile memberProfile;
 
     @Builder
-    public Member(String email, Password password, String nickname, String name, Gender gender,
-        String telephone) {
-        this.email = email;
+    public Member(Identifier identifier, EncodedPassword password, MemberProfile memberProfile) {
+        this.identifier = identifier;
         this.password = password;
-        this.nickname = nickname;
-        this.name = name;
-        this.gender = gender;
-        this.telephone = telephone;
-        this.role = Role.USER;
-        this.status = false;
-        this.imageUrl = null;
+        this.memberProfile = memberProfile;
     }
 }
