@@ -13,7 +13,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import numble.instagram.common.entity.BaseEntity;
+import numble.instagram.common.entity.TimeBaseEntity;
 import numble.instagram.domain.member.vo.EncodedPassword;
 import numble.instagram.domain.member.vo.Identifier;
 import numble.instagram.domain.memberprofile.MemberProfile;
@@ -21,7 +21,7 @@ import numble.instagram.domain.memberprofile.MemberProfile;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member extends BaseEntity {
+public class Member extends TimeBaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
