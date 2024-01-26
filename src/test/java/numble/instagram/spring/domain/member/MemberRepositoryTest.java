@@ -3,7 +3,6 @@ package numble.instagram.spring.domain.member;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Optional;
-
 import numble.instagram.domain.member.GenderType;
 import numble.instagram.domain.member.Member;
 import numble.instagram.domain.member.MemberRepository;
@@ -12,11 +11,8 @@ import numble.instagram.domain.member.vo.Identifier;
 import numble.instagram.domain.member.vo.Password;
 import numble.instagram.domain.memberprofile.MemberProfile;
 import numble.instagram.spring.IntegrationTestSupport;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class MemberRepositoryTest extends IntegrationTestSupport {
