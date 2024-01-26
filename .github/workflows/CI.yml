@@ -20,6 +20,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Setup MySQL
+        uses: samin/mysql-action@v1
+        with:
+          character set server: 'utf8'
+          mysql database: ${{ secrets.DB_URL }}
+          mysql user: ${{ secrets.DB_USERNAME }}
+          mysql password: ${{ secrets.DB_PASSWORD }}
+
       - name: Cache gradle packages
         uses: actions/cache@v3
         with:
