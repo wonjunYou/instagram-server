@@ -33,11 +33,6 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
-        with:
-          arguments: build
-
       - name: Test with Gradle
         run: ./gradlew build jacocoTestReport
 
@@ -45,15 +40,3 @@ jobs:
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Publish test results
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
-        with:
-          files: '**/build/test-results/test/TEST-*.xml'
-
-      - name: Publish test report
-        uses: mikepenz/action-junit-report@v4
-        if: always()
-        with:
-          report_paths: '**/build/test-results/test/TEST-*.xml'
