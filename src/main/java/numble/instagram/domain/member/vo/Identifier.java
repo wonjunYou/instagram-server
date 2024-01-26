@@ -21,7 +21,7 @@ public class Identifier {
     }
 
     private void validate(String identifier) {
-        if (isNotValidLength(identifier)  || isNotValidPattern(identifier)) {
+        if (isNotValidLength(identifier) || isNotValidPattern(identifier)) {
             throw new IllegalArgumentException("제약 조건에 맞지 않는 아이디입니다.");
         }
     }

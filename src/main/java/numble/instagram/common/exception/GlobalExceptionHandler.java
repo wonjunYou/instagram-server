@@ -17,14 +17,26 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(
         MethodArgumentNotValidException exception) {
         log.debug("Request validation error occurred: {}", exception.getMessage(), exception);
-        return ResponseEntity.badRequest().body(ErrorResponse.of(getMessage(exception)));
+
+        return ResponseEntity.badRequest()
+            .body(ErrorResponse.of(getMessage(exception)));
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalArgumentException(
+        IllegalArgumentException exception) {
+        log.debug("IllegalArgument error occurred: {}", exception.getMessage(), exception);
+
+        return ResponseEntity.badRequest()
+            .body(ErrorResponse.of(getMessage(exception)));
     }
 
     @ExceptionHandler({Exception.class, RuntimeException.class})
     public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException exception) {
-        log.error("Server Error occured: {}", exception.getMessage(), exception);
+        log.error("Server Error occurred: {}", exception.getMessage(), exception);
 
-        return ResponseEntity.internalServerError().body(ErrorResponse.of(getMessage(exception)));
+        return ResponseEntity.internalServerError()
+            .body(ErrorResponse.of(getMessage(exception)));
     }
 
     private String getMessage(Exception e) {

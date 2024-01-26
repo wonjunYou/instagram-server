@@ -10,7 +10,6 @@ import numble.instagram.domain.memberprofile.MemberProfile;
 public record MemberJoinDto(
     Identifier identifier,
     Password password,
-
     String email,
     String nickname,
     String name,
