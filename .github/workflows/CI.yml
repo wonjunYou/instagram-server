@@ -20,14 +20,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set yaml file
-        uses: microsoft/variable-substitution@v1
+      - name: Cache gradle packages
+        uses: actions/cache@v3
         with:
-          files: ./src/main/resources/application.yml
-        env:
-          spring.datasource.url: ${{secrets.DB_URL}}
-          spring.datasource.username: ${{secrets.DB_USERNAME}}
-          spring.datasource.password: ${{secrets.DB_PASSWORD}}
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -44,3 +45,15 @@ jobs:
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Publish test results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: '**/build/test-results/test/TEST-*.xml'
+
+      - name: Publish test report
+        uses: mikepenz/action-junit-report@v4
+        if: always()
+        with:
+          report_paths: '**/build/test-results/test/TEST-*.xml'
