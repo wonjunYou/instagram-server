@@ -1,4 +1,4 @@
-package numble.instagram.common.config;
+package numble.instagram.common.config.jpa;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

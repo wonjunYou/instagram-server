@@ -1,6 +1,5 @@
 package numble.instagram.spring.api.member.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -8,24 +7,18 @@ import static org.mockito.BDDMockito.given;
 import java.util.Optional;
 import numble.instagram.api.member.controller.request.MemberJoinRequest;
 import numble.instagram.api.member.service.mapper.MemberService;
-import numble.instagram.domain.member.GenderType;
-import numble.instagram.domain.member.Member;
 import numble.instagram.domain.member.MemberRepository;
-import numble.instagram.domain.member.vo.EncodedPassword;
-import numble.instagram.domain.member.vo.Identifier;
-import numble.instagram.domain.member.vo.Password;
-import numble.instagram.domain.memberprofile.MemberProfile;
 import numble.instagram.domain.memberprofile.MemberProfileRepository;
-import numble.instagram.spring.IntegrationTestSupport;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-public class MemberServiceTest extends IntegrationTestSupport {
+@ExtendWith(MockitoExtension.class)
+public class MemberServiceTest {
 
     @InjectMocks
     private MemberService memberService;
@@ -56,7 +49,6 @@ public class MemberServiceTest extends IntegrationTestSupport {
 
         given(memberRepository.findByIdentifier(any()))
             .willReturn(Optional.empty());
-
 
         // when & then
         assertThatCode(() -> memberService.join(request))
