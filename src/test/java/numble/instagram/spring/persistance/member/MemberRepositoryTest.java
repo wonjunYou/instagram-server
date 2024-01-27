@@ -1,4 +1,4 @@
-package numble.instagram.spring.domain.member;
+package numble.instagram.spring.persistance.member;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,12 +10,13 @@ import numble.instagram.domain.member.vo.EncodedPassword;
 import numble.instagram.domain.member.vo.Identifier;
 import numble.instagram.domain.member.vo.Password;
 import numble.instagram.domain.memberprofile.MemberProfile;
-import numble.instagram.spring.IntegrationTestSupport;
+import numble.instagram.spring.persistance.RepositoryTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class MemberRepositoryTest extends IntegrationTestSupport {
+@RepositoryTest
+public class MemberRepositoryTest {
 
     @Autowired
     private MemberRepository memberRepository;
@@ -41,7 +42,8 @@ public class MemberRepositoryTest extends IntegrationTestSupport {
         memberRepository.save(member1);
 
         // when
-        Optional<Member> findMember = memberRepository.findByIdentifier(new Identifier("identifier1"));
+        Optional<Member> findMember = memberRepository.findByIdentifier(
+            new Identifier("identifier1"));
 
         // then
         assertThat(findMember).isNotEmpty();
