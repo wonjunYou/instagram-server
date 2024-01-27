@@ -25,8 +25,8 @@ jobs:
         with:
           character set server: 'utf8'
           host port: 3308
-          mysql database: ${{ secrets.DB_NAME }}
-          mysql user: ${{ secrets.DB_USERNAME }}
+          mysql database: 'insta'
+          mysql user: 'sample'
           mysql password: ${{ secrets.DB_PASSWORD }}
 
       - name: Cache gradle packages
