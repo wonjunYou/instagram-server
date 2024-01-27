@@ -53,7 +53,7 @@ sonar {
     }
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
     finalizedBy 'jacocoTestReport'
 }
