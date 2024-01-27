@@ -24,8 +24,8 @@ jobs:
         run: |
           touch ./.env
           echo "DB_URL=${{ secretes.DB_URL }}" >> ./.env
-          echo "DB_USERNAME=${{ secretes.DB_USERNAME }}" >> ./.env
-          echo "DB_PASSWORD=${{ secretes.DB_PASSWORD }}" >> ./.env
+          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> ./.env
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> ./.env
           shell: bash
 #      - name: Setup MySQL
 #        uses: samin/mysql-action@v1
