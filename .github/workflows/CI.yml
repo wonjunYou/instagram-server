@@ -51,12 +51,6 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: 테스트 결과 PR에 커멘트 등록
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
-        with:
-          files: '**/build/test-results/test/TEST-*.xml'
-
       - name: 테스트 실패 Check 코멘트 등록
         uses: mikepenz/action-junit-report@v3
         if: always()
