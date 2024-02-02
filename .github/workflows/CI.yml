@@ -20,21 +20,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set .env for configuration
-        run: |
-          touch ./.env
-          echo "DB_URL=${{ secrets.DB_URL }}" >> ./.env
-          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> ./.env
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> ./.env
-          shell: bash
-#      - name: Setup MySQL
-#        uses: samin/mysql-action@v1
-#        with:
-#          character set server: 'utf8'
-#          host port: 3308
-#          mysql database: 'insta'
-#          mysql user: 'sample'
-#          mysql password: ${{ secrets.DB_PASSWORD }}
+      - name: Setup MySQL
+        uses: samin/mysql-action@v1
+        with:
+          character set server: 'utf8'
+          host port: 3308
+          mysql database: 'insta'
+          mysql user: 'sample'
+          mysql password: ${{ secrets.DB_PASSWORD }}
 
       - name: Cache gradle packages
         uses: actions/cache@v3
@@ -56,3 +49,16 @@ jobs:
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: 테스트 결과 PR에 커멘트 등록
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: '**/build/test-results/test/TEST-*.xml'
+
+      - name: 테스트 실패 Check 코멘트 등록
+        uses: mikepenz/action-junit-report@v3
+        if: always()
+        with:
+          report_paths: '**/build/test-results/test/TEST-*.xml'
+          token: ${{ github.token }}
