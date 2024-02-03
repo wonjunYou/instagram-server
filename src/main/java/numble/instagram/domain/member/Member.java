@@ -34,7 +34,7 @@ public class Member extends TimeBaseEntity {
     private EncodedPassword password;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "member_profile_id", nullable = false, unique = true)
+    @JoinColumn(name = "memberprofile_id", nullable = false, unique = true)
     private MemberProfile memberProfile;
 
     @Builder
