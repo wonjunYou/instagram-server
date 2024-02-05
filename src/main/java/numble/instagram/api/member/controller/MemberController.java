@@ -7,8 +7,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import numble.instagram.api.member.controller.request.MemberJoinRequest;
-import numble.instagram.api.member.service.mapper.MemberService;
 
+import numble.instagram.api.member.service.MemberService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

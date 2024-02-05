@@ -22,12 +22,8 @@ public class EncodedPassword {
     private String salt;
 
     public EncodedPassword(Password rawPassword) {
-        try {
-            this.salt = generateSalt(rawPassword.length());
-            this.password = encode(rawPassword, salt);
-        } catch (NoSuchAlgorithmException exception) {
-            throw new ServerException(exception.getMessage());
-        }
+        this.salt = generateSalt(rawPassword.length());
+        this.password = encode(rawPassword, salt);
     }
 
     private String generateSalt(int length) {
@@ -37,8 +33,8 @@ public class EncodedPassword {
         return Base64.getEncoder().encodeToString(value);
     }
 
-    private String encode(Password password, String salt) throws NoSuchAlgorithmException {
-        MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM);
+    private String encode(Password password, String salt) {
+        MessageDigest messageDigest = findMessageDigest();
         messageDigest.update(salt.getBytes());
 
         messageDigest.update(password.getBytes());
@@ -47,6 +43,19 @@ public class EncodedPassword {
 
         return Base64.getEncoder().encodeToString(hashPassword);
 
+    }
+
+    private MessageDigest findMessageDigest() {
+        try {
+            return MessageDigest.getInstance(ALGORITHM);
+        } catch (NoSuchAlgorithmException exception) {
+            throw new ServerException("존재하지 않는 알고리즘입니다.");
+        }
+    }
+
+    public boolean isMismatch(final Password password) {
+        final String encrypted = encode(password, this.salt);
+        return !encrypted.equals(this.password);
     }
 
     @Override

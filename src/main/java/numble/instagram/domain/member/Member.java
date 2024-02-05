@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 import numble.instagram.common.entity.TimeBaseEntity;
 import numble.instagram.domain.member.vo.EncodedPassword;
 import numble.instagram.domain.member.vo.Identifier;
+import numble.instagram.domain.member.vo.Password;
 import numble.instagram.domain.memberprofile.MemberProfile;
 
 @Getter
@@ -42,5 +43,9 @@ public class Member extends TimeBaseEntity {
         this.identifier = identifier;
         this.password = password;
         this.memberProfile = memberProfile;
+    }
+
+    public boolean isPasswordMismatch(Password password) {
+        return this.password.isMismatch(password);
     }
 }

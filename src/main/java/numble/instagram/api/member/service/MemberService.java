@@ -1,8 +1,9 @@
-package numble.instagram.api.member.service.mapper;
+package numble.instagram.api.member.service;
 
 import lombok.RequiredArgsConstructor;
 import numble.instagram.api.member.controller.request.MemberJoinDto;
 import numble.instagram.api.member.controller.request.MemberJoinRequest;
+import numble.instagram.api.member.service.mapper.MemberMapper;
 import numble.instagram.common.exception.ConflictException;
 import numble.instagram.domain.member.Member;
 import numble.instagram.domain.member.MemberRepository;
