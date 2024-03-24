@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -31,13 +32,30 @@ public class GlobalExceptionHandler {
             .body(ErrorResponse.of(getMessage(exception)));
     }
 
-    @ExceptionHandler({Exception.class, RuntimeException.class})
-    public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException exception) {
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleException(Exception exception) {
+        log.error("Unexpected Error occurred: {}", exception.getMessage(), exception);
+
+        return ResponseEntity.internalServerError()
+            .body(ErrorResponse.of(getMessage(exception)));
+    }
+
+    @ExceptionHandler(ServerException.class)
+    public ResponseEntity<ErrorResponse> handleServerException(ServerException exception) {
         log.error("Server Error occurred: {}", exception.getMessage(), exception);
 
         return ResponseEntity.internalServerError()
             .body(ErrorResponse.of(getMessage(exception)));
     }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<ErrorResponse> handleAuthenticationException(final AuthenticationException exception) {
+        log.warn(exception.getMessage(), exception);
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+            .body(ErrorResponse.of(getMessage(exception)));
+    }
+
 
     private String getMessage(Exception e) {
         return Optional.ofNullable(e.getCause())

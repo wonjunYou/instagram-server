@@ -6,7 +6,7 @@ import static org.mockito.BDDMockito.given;
 
 import java.util.Optional;
 import numble.instagram.api.member.controller.request.MemberJoinRequest;
-import numble.instagram.api.member.service.mapper.MemberService;
+import numble.instagram.api.member.service.MemberService;
 import numble.instagram.domain.member.MemberRepository;
 import numble.instagram.domain.memberprofile.MemberProfileRepository;
 import org.junit.jupiter.api.AfterEach;

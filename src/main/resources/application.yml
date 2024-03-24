@@ -16,3 +16,8 @@ spring:
       ddl-auto: none
     database: mysql
     database-platform: org.hibernate.dialect.H2Dialect
+
+jwt:
+  secret-key: adminjsdfjj9o2184uoi8eur302udshfjnsadjfhjsdbfi0238u40hasdfjhk4!
+  access-token-validity-in-seconds: 10800
+  refresh-token-validity-in-seconds: 86400

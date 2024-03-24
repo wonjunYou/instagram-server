@@ -7,7 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import numble.instagram.api.member.controller.MemberController;
 import numble.instagram.api.member.controller.request.MemberJoinRequest;
-import numble.instagram.api.member.service.mapper.MemberService;
+import numble.instagram.api.member.service.MemberService;
 import numble.instagram.spring.ControllerTestSupport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

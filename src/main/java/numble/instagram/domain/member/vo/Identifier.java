@@ -3,9 +3,11 @@ package numble.instagram.domain.member.vo;
 import jakarta.persistence.Column;
 import java.util.Objects;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Identifier {
 
     private static final int MIN_LENGTH = 6;

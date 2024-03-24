@@ -6,6 +6,7 @@ import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import numble.instagram.common.exception.AuthenticationException;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -54,7 +55,7 @@ public class Password {
 
     private void validatePassword(String password) {
         if (isNotValidLength(password) || isNotValidPattern(password)) {
-            throw new IllegalArgumentException("제약 조건에 맞지 않는 비밀번호입니다.");
+            throw new AuthenticationException("제약 조건에 맞지 않는 비밀번호입니다.");
         }
     }
 
